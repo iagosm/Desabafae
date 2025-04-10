@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nome_empresa','255');
             $table->string('titulo','255');
             $table->text('descricao');
-            $table->enum('status', ['pendente', 'em análise', 'resolvido'])->default('pendente');
+            $table->enum('status', ['pendente', 'em analise', 'resolvido'])->default('pendente');
             $table->boolean('anonimo')->default(false);
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
