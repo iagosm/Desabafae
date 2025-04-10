@@ -29,3 +29,22 @@ Route::delete('/comment/{id}', [CommentController::class ,'destroy']);
 // TODO validar forma de remover ou mudar quando for like para deslike
 use App\Http\Controllers\VoteController;
 Route::post('/vote', [VoteController::class, 'store']);
+Route::put('/vote/{id}', [VoteController::class, 'update']);
+Route::delete('/vote/{id}', [VoteController::class, 'destroy']);
+
+// Tag
+use App\Http\Controllers\TagController;
+Route::get('/tag', [TagController::class, 'index']);
+Route::get('/tag/{id}', [TagController::class, 'show']);
+Route::post('/tag', [TagController::class, 'store']);
+Route::put('/tag/{id}', [TagController::class, 'update']);
+Route::delete('/tag/{id}', [TagController::class, 'destroy']);
+
+// Notification
+use App\Http\Controllers\NotificationController;
+Route::get('/notification/{id}', [NotificationController::class, 'show']); //Devolve as notificações do usuário
+Route::post('/notification', [NotificationController::class, 'store']);
+Route::delete('/notification/{id}', [NotificationController::class, 'destroy']);
+
+
+// TODO pendente essas tabelas CompanyRequestController, ReportController
