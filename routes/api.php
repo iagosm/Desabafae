@@ -8,8 +8,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-// Complaint
 // TODO pendente a parte das inserções das TAGS
+// Complaint
 use App\Http\Controllers\ComplaintController;
 Route::get('/complaint', [ComplaintController::class ,'index']);
 Route::post('/complaint', [ComplaintController::class ,'store']);
@@ -25,8 +25,8 @@ Route::post('/comment', [CommentController::class, 'store']);
 Route::put('/comment/{id}', [CommentController::class ,'update']);
 Route::delete('/comment/{id}', [CommentController::class ,'destroy']);
 
-// Votes
 // TODO validar forma de remover ou mudar quando for like para deslike
+// Votes
 use App\Http\Controllers\VoteController;
 Route::post('/vote', [VoteController::class, 'store']);
 Route::put('/vote/{id}', [VoteController::class, 'update']);
@@ -47,4 +47,20 @@ Route::post('/notification', [NotificationController::class, 'store']);
 Route::delete('/notification/{id}', [NotificationController::class, 'destroy']);
 
 
-// TODO pendente essas tabelas CompanyRequestController, ReportController
+// Company Request
+// TODO ajustar o CompanyRequest table para que vincule para saber qual o id de empresa é 
+use App\Http\Controllers\CompanyRequestController;
+Route::get('/company-request', [CompanyRequestController::class, 'index']);
+Route::post('/company-request', [CompanyRequestController::class, 'store']);
+Route::put('/company-request/{id}', [CompanyRequestController::class, 'update']);
+Route::delete('/company-request/{id}', [CompanyRequestController::class, 'destroy']);
+
+// Company Request
+use App\Http\Controllers\ReportController;
+Route::get('/report', [ReportController::class, 'index']);
+Route::get('/report/{id}', [ReportController::class, 'show']);
+Route::post('/report', [ReportController::class, 'store']);
+Route::put('/report/{id}', [ReportController::class, 'update']);
+Route::delete('/report/{id}', [ReportController::class, 'destroy']);
+
+// TODO criar a tabela ComplaintTagControler
