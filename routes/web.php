@@ -7,12 +7,16 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Teste');
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    // return Inertia::render('Welcome', [
+    //     'canLogin' => Route::has('login'),
+    //     'canRegister' => Route::has('register'),
+    //     'laravelVersion' => Application::VERSION,
+    //     'phpVersion' => PHP_VERSION,
+    // ]);
+});
+
+Route::get('/complaint', function () {
+    return Inertia::render('Teste1');
 });
 
 Route::get('/dashboard', function () {

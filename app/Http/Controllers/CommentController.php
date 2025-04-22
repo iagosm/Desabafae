@@ -19,7 +19,7 @@ class CommentController extends Controller
                 'comentario' => 'required|string|min:10',
             ]);
             Comment::create($validateRequest);
-            return response()->json('Reclamação criada com sucesso', 200);
+            return response()->json('Comentário criada com sucesso', 200);
         } catch (ValidationException $e) {
             return response()->json(['errors' => $e->errors()], 422);
         } catch (\Exception $e) {
