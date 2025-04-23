@@ -2,12 +2,19 @@
 // Com fill-corquequero consigo definir a cor na interna do icone
 // Com color eu seto a cor dele padrão
 import { ThumbsDown, ThumbsUp, MessageSquare } from "lucide-vue-next";
-import "flowbite";
+import { ref } from "vue";
+import { Link, router } from "@inertiajs/vue3"
+const activeTab = ref('mais-curtidas');
+
+ const getComplaint = ($idComplaint)  => {
+  sessionStorage.setItem('complaintId', $idComplaint);
+  router.visit(route('complaint'))
+ };
 </script>
 <template>
   <header class="flex items-center justify-between px-6 py-4 bg-white shadow-sm">
     <div class="flex items-center space-x-2">
-      <!-- <img src="/logo.svg" alt="Logo" class="w-4 h-6"> -->
+      <img class="w-10 h-10 rounded-full" src="@/assets/logo.png" alt="Rounded avatar">
       <span class="text-xl font-bold">Desabafaê</span>
     </div>
     <nav class="hidden space-x-6 md:flex">
@@ -18,121 +25,84 @@ import "flowbite";
       <a href="#" class="text-gray-800 hover:text-black">Contato</a>
     </nav>
     <div class="flex items-center space-x-3">
-      <button class="px-4 py-2 text-sm border border-gray-300 rounded-full hover:bg-gray-100">
+      <button class="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-100">
         Entrar
       </button>
-      <button class="px-4 py-2 text-sm font-medium text-white rounded-full bg-lime-400 hover:bg-lime-500">
+      <button class="px-4 py-2 text-sm font-medium text-white rounded-lg bg-lime-500 hover:bg-lime-600">
         Cadastrar
       </button>
     </div>
   </header>
-  <div class="max-w-5xl px-4 py-8 mx-auto">
-    <div class="mb-6">
+  <main class="max-w-screen-xl px-2 py-8 mx-auto">
+    <div class="mt-2 mb-6">
       <input type="text" placeholder="Buscar reclamações..."
-        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500" />
+        class="block w-full max-w-md px-4 py-2 mx-auto border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500" />
     </div>
     <h1 class="mb-6 text-4xl font-bold">Reclamações</h1>
-
-    <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-      <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-styled-tab"
-        data-tabs-toggle="#default-styled-tab-content"
-        data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500"
-        data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300"
-        role="tablist">
-        <li class="me-2" role="presentation">
-          <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-styled-tab"
-            data-tabs-target="#styled-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
-            Profile
-          </button>
-        </li>
-        <li class="me-2" role="presentation">
-          <button
-            class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-            id="dashboard-styled-tab" data-tabs-target="#styled-dashboard" type="button" role="tab"
-            aria-controls="dashboard" aria-selected="false">
-            Dashboard
-          </button>
-        </li>
-        <li class="me-2" role="presentation">
-          <button
-            class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-            id="settings-styled-tab" data-tabs-target="#styled-settings" type="button" role="tab"
-            aria-controls="settings" aria-selected="false">
-            Settings
-          </button>
-        </li>
-        <li role="presentation">
-          <button
-            class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-            id="contacts-styled-tab" data-tabs-target="#styled-contacts" type="button" role="tab"
-            aria-controls="contacts" aria-selected="false">
-            Contacts
-          </button>
-        </li>
-      </ul>
+    <div class="border-b border-gray-200">
+      <nav class="flex -mb-px">
+        <button @click="activeTab = 'mais-curtidas'" :class="[
+          'py-4 px-6 font-medium text-sm border-b-2 focus:outline-none',
+          activeTab === 'mais-curtidas'
+            ? 'border-lime-500 text-lime-600'
+            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+        ]">
+          Mais Curtidas
+        </button>
+        <button @click="activeTab = 'pendentes'" :class="[
+          'py-4 px-6 font-medium text-sm border-b-2 focus:outline-none',
+          activeTab === 'pendentes'
+            ? 'border-lime-500 text-lime-600'
+            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+        ]">
+          Pendentes
+        </button>
+        <button @click="activeTab = 'resolvidas'" :class="[
+          'py-4 px-6 font-medium text-sm border-b-2 focus:outline-none',
+          activeTab === 'resolvidas'
+            ? 'border-lime-500 text-lime-600'
+            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+        ]">
+          Resolvidas
+        </button>
+      </nav>
     </div>
-    <div id="default-styled-tab-content">
-      <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-profile" role="tabpanel"
-        aria-labelledby="profile-tab">
-        <div class="grid grid-cols-1 gap-4">
-          <div class="p-4 border border-red-400 rounded-sm">
-            <div v-for="n in 10" class="flex justify-between p-3 mb-4 border border-gray-400 rounded">
-              <div>
-                <div>
-                  <h2 class="text-xl font-bold">
-                    Problema com a entrega do produto
-                  </h2>
-                </div>
-                <div>
-                  Houve um problema com a e entrega do
-                  produ...
-                </div>
-                <div>Empresa</div>
-                <!-- <ThumbsDown class="w-4 h-6 text-red-600 bg-blue-800 fill-red-700" /> <ThumbsUp class="w-4 h-6 text-red-600" />
-              <ThumbsDown class="w-4 h-6 text-red-600 bg-blue-800 fill-red-700" /> <ThumbsUp class="w-4 h-6 text-red-600" />
-              <MessageSquare class="w-4 h-6 text-red-600 bg-blue-800 fill-red-700" /> <ThumbsUp class="w-4 h-6 text-red-600" /> -->
-                <div class="mt-2 flex align-middle justify-between max-w-[150px]">
-                  <div class="flex gap-1">
-                    <ThumbsUp class="w-4 h-4 text-black" />
-                    <span>12</span>
-                  </div>
-                  <div class="flex gap-1">
-                    <ThumbsDown class="w-4 h-6 text-black" />
-                    <span>52</span>
-                  </div>
-                  <div class="flex gap-1">
-                    <MessageSquare class="w-4 h-6 text-black" />
-                    <span>90</span>
-                  </div>
-                </div>
+    <div class="p-6">
+      <div v-if="activeTab === 'mais-curtidas'" class="space-y-6">
+        <div class="grid grid-cols-2 gap-4">
+          <div v-for="n in 10" class="flex justify-between p-5 border border-gray-200 rounded-lg shadow-sm mb-4bg-white dark:bg-gray-800 dark:border-gray-700">
+            <div>
+              <div class="space-y-2">
+                <h2 class="text-xl font-semibold text-gray-800">Problema com a entrega do produto</h2>
+                <p class="text-sm text-gray-600">Houve um problema com a entrega do produto...</p>
+                <p class="text-xs text-gray-500">Empresa</p>
               </div>
-              <div class="flex flex-col justify-between">
-                <div class="p-1 bg-gray-100 rounded">
-                  Pendente
-                </div>
-                <div>
-                  <a href="" class="p-1 rounded-md text-lime-500 hover:text-lime-400">Ver Mais</a>
-                </div>
+              <!-- <ThumbsDown class="w-4 h-6 text-red-600 bg-blue-800 fill-red-700" /> <ThumbsUp class="w-4 h-6 text-red-600" />
+            <ThumbsDown class="w-4 h-6 text-red-600 bg-blue-800 fill-red-700" /> <ThumbsUp class="w-4 h-6 text-red-600" />
+            <MessageSquare class="w-4 h-6 text-red-600 bg-blue-800 fill-red-700" /> <ThumbsUp class="w-4 h-6 text-red-600" /> -->
+            <div class="flex items-center justify-start gap-4 mt-4 text-sm text-gray-500">
+              <div class="flex items-center gap-1"><ThumbsUp class="w-4 h-4" /><span>12</span></div>
+              <div class="flex items-center gap-1"><ThumbsDown class="w-4 h-4" /><span>52</span></div>
+              <div class="flex items-center gap-1"><MessageSquare class="w-4 h-4" /><span>90</span></div>
+            </div>
+            </div>
+            <div class="flex flex-col justify-between">
+              <div class="px-2 py-1 text-xs font-medium bg-gray-100 rounded w-fit">
+                Pendente
+              </div>
+              <div>
+                 <Link @click.prevent="getComplaint()" class="p-1 rounded-md text-lime-500 hover:text-lime-600">Ver Mais</Link>
               </div>
             </div>
           </div>
-          <!-- ... -->
-          <div>09</div>
         </div>
       </div>
-      <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-dashboard" role="tabpanel"
-        aria-labelledby="dashboard-tab">
-        <p>Segunda tab teste</p>
-      </div>
-      <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-settings" role="tabpanel"
-        aria-labelledby="settings-tab">
-        <p>Terceira tab teste</p>
-      </div>
-      <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-contacts" role="tabpanel"
-        aria-labelledby="contacts-tab">
-        <p>Quarta tab teste</p>
-      </div>
     </div>
-  </div>
+  </main>
+  <footer class="py-4 border-t">
+    <div class="text-center">
+      <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="https://www.linkedin.com/in/iagosm/" target="_blank" class="hover:underline text-lime-600">Iago Sousa</a>. Todos os Direitos Reservados.</span>
+    </div>
+  </footer>
 </template>
 <style scoped></style>

@@ -13,11 +13,11 @@ Route::get('/', function () {
     //     'laravelVersion' => Application::VERSION,
     //     'phpVersion' => PHP_VERSION,
     // ]);
-});
+})->name('initial');
 
 Route::get('/complaint', function () {
     return Inertia::render('Teste1');
-});
+})->name('complaint');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
