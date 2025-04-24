@@ -12,7 +12,7 @@ const activeTab = ref('mais-curtidas');
  };
 </script>
 <template>
-  <header class="flex items-center justify-between px-6 py-4 bg-white shadow-sm">
+  <header class="flex items-center justify-between px-6 py-4 shadow-sm bg-[#F8FAFC">
     <div class="flex items-center space-x-2">
       <img class="w-10 h-10 rounded-full" src="@/assets/logo.png" alt="Rounded avatar">
       <span class="text-xl font-bold">Desabafaê</span>

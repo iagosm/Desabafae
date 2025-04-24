@@ -1,7 +1,7 @@
 <script setup>
 // Com fill-corquequero consigo definir a cor na interna do icone
 // Com color eu seto a cor dele padrão
-import { ThumbsDown, ThumbsUp, MessageSquare } from 'lucide-vue-next'
+import { ThumbsDown, ThumbsUp, MessageSquare, Calendar } from 'lucide-vue-next'
 import { onMounted } from 'vue'
 import { router } from '@inertiajs/vue3'
 
@@ -18,7 +18,7 @@ console.log('olas')
 // })
 </script>
 <template>
-  <header class="flex items-center justify-between px-6 py-4 bg-white shadow-sm">
+  <header class="flex items-center justify-between px-6 py-4 shadow-sm">
     <div class="flex items-center space-x-2">
       <!-- <img src="/logo.svg" alt="Logo" class="w-4 h-6"> -->
       <span class="text-xl font-bold">Desabafaê</span>
@@ -31,24 +31,27 @@ console.log('olas')
       <a href="#" class="text-gray-800 hover:text-black">Contato</a>
     </nav>
     <div class="flex items-center space-x-3">
-      <button class="px-4 py-2 text-sm border border-gray-300 rounded-full hover:bg-gray-100">Entrar</button>
+      <button @click="router.visit(route('login'))" class="px-4 py-2 text-sm border border-gray-300 rounded-full hover:bg-gray-100">Entrar</button>
       <button
         class="px-4 py-2 text-sm font-medium text-white rounded-full bg-lime-400 hover:bg-lime-500">Cadastrar</button>
     </div>
   </header>
   <main class="max-w-screen-xl px-2 py-8 mx-auto">
-    <article class="p-6 mb-6 bg-white border shadow-sm rounded-xl">
+    <article class="p-6 mb-6 bg-[#F7FAFC] border shadow-sm rounded-xl">
       <div class="flex items-center gap-4 mb-4">
         <img src="@/assets/logo.png" alt="Avatar" class="object-cover w-10 h-10 rounded-full" />
         <div>
           <p class="font-semibold text-gray-900">usuario123</p>
-          <p class="text-xs text-gray-500">Publicado há 2 dias</p>
+          <p class="flex items-center gap-1 text-xs text-lime-600">
+            <Calendar class="w-4 h-4" stroke-width="1.5" />
+            Publicado há 2 dias
+          </p>
         </div>
       </div>
       <div class="space-y-3">
         <div class="flex flex-wrap items-center gap-2">
           <h1 class="text-xl font-bold text-gray-900">Problema com a entrega</h1>
-          <span class="px-2 py-1 text-xs font-medium bg-gray-300 border border-gray-500 rounded">
+          <span class="px-2 py-1 text-xs font-medium bg-[#F7FAFC] border border-gray-500 rounded">
             Pendente
           </span>
         </div>
@@ -79,7 +82,7 @@ console.log('olas')
         </div>
       </div>
     </article>
-    <div class="flex items-start p-4 space-x-4 bg-white border shadow-sm rounded-xl">
+    <div class="flex items-start p-4 space-x-4 bg-[#F7FAFC] border shadow-sm rounded-xl">
       <img src="@/assets/logo.png" alt="Avatar" class="object-cover w-10 h-10 rounded-full" />
       <div class="flex-1">
         <textarea placeholder="Adicione um comentário..."
@@ -97,12 +100,13 @@ console.log('olas')
       <img src="@/assets/logo.png" alt="Avatar" class="object-cover rounded-full w-9 h-9" />
       <div class="flex-1">
         <div class="text-sm leading-tight">
-          <span class="font-semibold text-gray-900">usuario123</span>
-          <span class="ml-1 text-gray-800">Também tive um problema com a entrega dessa empresa.</span>
+          <span class="font-semibold text-lime-600">usuario123</span>
+          <span class="ml-1 text-gray-700">Também tive um problema com a entrega dessa empresa.</span>
         </div>
-        <div class="flex items-center gap-4 mt-1 text-xs text-gray-500">
-          <span>2d</span>
-          <button class="hover:underline">Curtir</button>
+        <div class="flex items-center gap-3 mt-1 text-xs text-gray-500">
+          <span>1h</span>
+          <button class="hover:underline"> 👍 Curtir</button>
+          <button class="hover:underline"> 👎 Não curtir</button>
           <button class="hover:underline">Responder</button>
         </div>
       </div>
