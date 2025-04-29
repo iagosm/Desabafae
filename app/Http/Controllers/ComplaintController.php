@@ -11,6 +11,61 @@ use Illuminate\Validation\ValidationException;
 class ComplaintController extends Controller
 {
 
+    public function getPending() {
+        $complaints = Complaint::where('status', 'pendente')
+        ->withCount([
+            'votes as likes_count' => function ($query) {
+                $query->where('tipo', 'like');
+            },
+            'votes as dislikes_count' => function ($query) {
+                $query->where('tipo', 'dislike');
+            },
+        ])
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $complaints->items(),
+            'pagination' => [
+                'current_page' => $complaints->currentPage(),
+                'last_page' => $complaints->lastPage(),
+                'per_page' => $complaints->perPage(),
+                'total' => $complaints->total(),
+                'next_page_url' => $complaints->nextPageUrl(),
+                'prev_page_url' => $complaints->previousPageUrl(),
+            ]
+        ]);
+    }
+
+    public function getResolved() {
+        $complaints = Complaint::where('status', 'resolvido')
+            ->withCount([
+                'votes as likes_count' => function ($query) {
+                    $query->where('tipo', 'like');
+                },
+                'votes as dislikes_count' => function ($query) {
+                    $query->where('tipo', 'dislike');
+                },
+            ])
+            ->orderByDesc('likes_count')
+            ->paginate(10);
+    
+        return response()->json([
+            'status' => 'success',
+            'data' => $complaints->items(),
+            'pagination' => [
+                'current_page' => $complaints->currentPage(),
+                'last_page' => $complaints->lastPage(),
+                'per_page' => $complaints->perPage(),
+                'total' => $complaints->total(),
+                'next_page_url' => $complaints->nextPageUrl(),
+                'prev_page_url' => $complaints->previousPageUrl(),
+            ]
+        ]);
+    }
+    
+
 //     index() → listar reclamações (com filtros, ordenação)
 
 // store() → criar nova reclamação

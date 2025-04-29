@@ -64,3 +64,7 @@ Route::put('/report/{id}', [ReportController::class, 'update']);
 Route::delete('/report/{id}', [ReportController::class, 'destroy']);
 
 // TODO criar a tabela ComplaintTagControler
+
+Route::get('/complaints/resolved', [ComplaintController::class, 'getResolved']);
+Route::get('/complaints/pending', [ComplaintController::class, 'getPending']);
+Route::get('/complaints/popular', [ComplaintController::class, 'getPopular']);
