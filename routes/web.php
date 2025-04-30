@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Teste');
+    return Inertia::render('Inicial');
     // return Inertia::render('Welcome', [
     //     'canLogin' => Route::has('login'),
     //     'canRegister' => Route::has('register'),
@@ -18,6 +18,10 @@ Route::get('/', function () {
 Route::get('/complaint', function () {
     return Inertia::render('Teste1');
 })->name('complaint');
+
+Route::get('/create-complaint', function () {
+    return Inertia::render('CreateComplaint');
+})->name('create-complaint');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

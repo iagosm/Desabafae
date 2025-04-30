@@ -1,9 +1,15 @@
 <script setup>
-import { ref, computed, watch  } from "vue";
-import { Link, router, usePage } from "@inertiajs/vue3"
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
-const page = usePage()
+  import { computed } from "vue";
+  import { Link, usePage } from "@inertiajs/vue3"
+  import Dropdown from '@/Components/Dropdown.vue';
+  import DropdownLink from '@/Components/DropdownLink.vue';
+  const page = usePage()
+  function linkClass(path) {
+    return page.url === path
+      ? 'text-black border-b-2 border-lime-400'
+      : 'text-gray-800 hover:text-black'
+  }
+
 const isLoggedIn = computed(() => page.props.auth.user)
 </script>
 <template>
@@ -13,11 +19,11 @@ const isLoggedIn = computed(() => page.props.auth.user)
       <span class="text-xl font-bold">Desabafaê</span>
     </div>
     <nav class="hidden space-x-6 md:flex">
-      <a href="#" class="text-gray-800 border-b-2 hover:text-black border-lime-400">Reclamações</a>
-      <a href="#" class="text-gray-800 hover:text-black">Empresas</a>
-      <a href="#" class="text-gray-800 hover:text-black">Como Funciona</a>
-      <a href="#" class="text-gray-800 hover:text-black">Sobre Nós</a>
-      <a href="#" class="text-gray-800 hover:text-black">Contato</a>
+      <Link href="/" :class="linkClass('/')">Reclamações</Link>
+      <Link href="/complaint" :class="linkClass('/complaint')">Empresas</Link>
+      <Link href="/como-funciona" :class="linkClass('/como-funciona')">Como Funciona</Link>
+      <Link href="/sobre-nos" :class="linkClass('/sobre-nos')">Sobre Nós</Link>
+      <Link href="/contato" :class="linkClass('/contato')">Contato</Link>
     </nav>
     <div class="flex items-center space-x-3">
       <div v-if="!isLoggedIn" class="flex items-center space-x-3">
@@ -45,7 +51,6 @@ const isLoggedIn = computed(() => page.props.auth.user)
               </button>
             </span>
           </template>
-
           <template #content>
             <DropdownLink :href="route('profile.edit')">
               Perfil

@@ -9,8 +9,6 @@
     }
   });
 
-  alert(props.problema);
-
   const getComplaint = ($idComplaint) => {
     sessionStorage.setItem('complaintId', $idComplaint);
     router.visit(route('complaint'))
@@ -21,7 +19,7 @@
     class="flex justify-between p-5 border border-gray-200 rounded-lg shadow-sm mb-4bg-white dark:bg-gray-800 dark:border-gray-700">
     <div>
       <div class="space-y-2">
-        <h2 class="text-xl font-semibold text-gray-800">{{ problema.titulo }}</h2>
+        <h2 class="text-xl font-semibold text-gray-800">{{ problema.titulo }} {{  problema.id}}</h2>
         <p class="text-sm text-gray-600">{{ problema.descricao }}</p>
         <p class="text-xs text-gray-500">{{ problema.nome_empresa }}</p>
       </div>

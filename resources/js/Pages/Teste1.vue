@@ -1,6 +1,7 @@
 <script setup>
 // Com fill-corquequero consigo definir a cor na interna do icone
 // Com color eu seto a cor dele padrão
+import Layout from '@/Pages/Layout/Layout.vue';
 import { ThumbsDown, ThumbsUp, MessageSquare, Calendar } from 'lucide-vue-next'
 import { onMounted } from 'vue'
 import { router } from '@inertiajs/vue3'
@@ -18,25 +19,7 @@ console.log('olas')
 // })
 </script>
 <template>
-  <header class="flex items-center justify-between px-6 py-4 shadow-sm">
-    <div class="flex items-center space-x-2">
-      <!-- <img src="/logo.svg" alt="Logo" class="w-4 h-6"> -->
-      <span class="text-xl font-bold">Desabafaê</span>
-    </div>
-    <nav class="hidden space-x-6 md:flex">
-      <a href="#" class="text-gray-800 border-b-2 hover:text-black border-lime-400">Reclamações</a>
-      <a href="#" class="text-gray-800 hover:text-black">Empresas</a>
-      <a href="#" class="text-gray-800 hover:text-black">Como Funciona</a>
-      <a href="#" class="text-gray-800 hover:text-black">Sobre Nós</a>
-      <a href="#" class="text-gray-800 hover:text-black">Contato</a>
-    </nav>
-    <div class="flex items-center space-x-3">
-      <button @click="router.visit(route('login'))" class="px-4 py-2 text-sm border border-gray-300 rounded-full hover:bg-gray-100">Entrar</button>
-      <button
-        class="px-4 py-2 text-sm font-medium text-white rounded-full bg-lime-400 hover:bg-lime-500">Cadastrar</button>
-    </div>
-  </header>
-  <main class="max-w-screen-xl px-2 py-8 mx-auto">
+  <Layout >
     <article class="p-6 mb-6 bg-[#F7FAFC] border shadow-sm rounded-xl">
       <div class="flex items-center gap-4 mb-4">
         <img src="@/assets/logo.png" alt="Avatar" class="object-cover w-10 h-10 rounded-full" />
@@ -111,13 +94,6 @@ console.log('olas')
         </div>
       </div>
     </div>
-  </main>
-  <footer class="py-4 border-t">
-    <div class="text-center">
-      <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a
-          href="https://www.linkedin.com/in/iagosm/" target="_blank" class="hover:underline text-lime-600">Iago
-          Sousa</a>. Todos os Direitos Reservados.</span>
-    </div>
-  </footer>
+  </Layout>
 </template>
 <style scoped></style>
