@@ -23,6 +23,14 @@ Route::get('/create-complaint', function () {
     return Inertia::render('CreateComplaint');
 })->name('create-complaint');
 
+Route::get('/about-us', function () {
+    return Inertia::render('SobreNos');
+})->name('about-us');
+
+Route::get('/how-it-works', function () {
+    return Inertia::render('ComoFunciona');
+})->name('how-it-works');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

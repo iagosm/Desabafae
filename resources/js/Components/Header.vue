@@ -21,8 +21,8 @@ const isLoggedIn = computed(() => page.props.auth.user)
     <nav class="hidden space-x-6 md:flex">
       <Link href="/" :class="linkClass('/')">Reclamações</Link>
       <Link href="/complaint" :class="linkClass('/complaint')">Empresas</Link>
-      <Link href="/como-funciona" :class="linkClass('/como-funciona')">Como Funciona</Link>
-      <Link href="/sobre-nos" :class="linkClass('/sobre-nos')">Sobre Nós</Link>
+      <Link href="/how-it-works" :class="linkClass('/how-it-works')">Como Funciona</Link>
+      <Link href="/about-us" :class="linkClass('/about-us')">Sobre Nós</Link>
       <Link href="/contato" :class="linkClass('/contato')">Contato</Link>
     </nav>
     <div class="flex items-center space-x-3">
